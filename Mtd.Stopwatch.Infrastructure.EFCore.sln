@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34511.84
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{B81F80B1-AB8D-49D9-A225-8AA5A99FB0C7}"
+	ProjectSection(SolutionItems) = preProject
+		.github\dependabot.yml = .github\dependabot.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{BBC8A792-62B9-4666-A56E-509C8215109E}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\build-test.yml = .github\workflows\build-test.yml
+		.github\workflows\codeql.yml = .github\workflows\codeql.yml
+		.github\workflows\publish-release.yml = .github\workflows\publish-release.yml
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mtd.Stopwatch.Infrastructure.EFCore", "Mtd.Stopwatch.Infrastructure.EFCore.csproj", "{42E5FDA7-8DE7-4F69-A50F-105A63FCB2B1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{42E5FDA7-8DE7-4F69-A50F-105A63FCB2B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42E5FDA7-8DE7-4F69-A50F-105A63FCB2B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42E5FDA7-8DE7-4F69-A50F-105A63FCB2B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42E5FDA7-8DE7-4F69-A50F-105A63FCB2B1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BBC8A792-62B9-4666-A56E-509C8215109E} = {B81F80B1-AB8D-49D9-A225-8AA5A99FB0C7}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3642D196-9D4E-4C0B-B508-BE9FA094D3A2}
+	EndGlobalSection
+EndGlobal
