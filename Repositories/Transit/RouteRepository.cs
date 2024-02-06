@@ -6,7 +6,7 @@ using System.Collections.Immutable;
 
 namespace Mtd.Stopwatch.Infrastructure.EFCore.Repositories.Transit
 {
-	internal class RouteRepository(StopwatchContext context)
+	public class RouteRepository(StopwatchContext context)
 		: AsyncEFIdentifiableRepository<string, Route>(context), IRouteRepository<IReadOnlyCollection<Route>>
 	{
 		public async Task<IReadOnlyCollection<Route>> GetAllWithDirectionAsync(CancellationToken cancellationToken)
