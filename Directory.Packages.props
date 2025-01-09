@@ -11,6 +11,6 @@
     <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.0" />
     <PackageVersion Include="Mtd.Core" Version="9.0.1" />
     <PackageVersion Include="Mtd.Infrastructure.EFCore" Version="9.0.0" />
-    <PackageVersion Include="Mtd.Stopwatch.Core" Version="9.2.0" />
+    <PackageVersion Include="Mtd.Stopwatch.Core" Version="9.3.0" />
   </ItemGroup>
 </Project>
