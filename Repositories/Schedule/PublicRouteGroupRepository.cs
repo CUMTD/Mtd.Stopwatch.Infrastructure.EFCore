@@ -18,9 +18,46 @@ namespace Mtd.Stopwatch.Infrastructure.EFCore.Repositories.Schedule
 
 			return results.ToImmutableArray();
 		}
-		public Task<PublicRouteGroup> GetByIdentityWithPublicRoutesAsync(string identity, CancellationToken cancellationToken) => Query()
-			.Where(prg => prg.Id == identity)
-			.Include(prg => prg.PublicRoutes)
-			.SingleAsync(cancellationToken);
+
+		public async Task<IReadOnlyCollection<PublicRouteGroup>> GetAllWithPublicRoutesAsync(CancellationToken cancellationToken, bool includeDirections = false, bool includeDaytypes = false)
+		{
+			var query = Query();
+
+			if (includeDirections)
+			{
+				query = query.Include(prg => prg.Direction);
+			}
+
+			query = includeDaytypes
+				? query
+					.Include(prg => prg.PublicRoutes)
+					.ThenInclude(pr => pr.Daytype)
+				: query.Include(prg => prg.PublicRoutes);
+
+			var results = await query
+				.ToArrayAsync(cancellationToken)
+				.ConfigureAwait(false);
+
+			return results.ToImmutableArray();
+		}
+		public Task<PublicRouteGroup> GetByIdentityWithPublicRoutesAsync(string identity, CancellationToken cancellationToken, bool includeDirections = false, bool includeDaytype = false)
+		{
+			var query = Query()
+				.Where(prg => prg.Id == identity);
+
+			if (includeDirections)
+			{
+				query = query.Include(prg => prg.Direction);
+			}
+
+			query = includeDaytype
+				? query
+					.Include(prg => prg.PublicRoutes)
+					.ThenInclude(pr => pr.Daytype)
+				: query.Include(prg => prg.PublicRoutes);
+
+			return query.SingleAsync(cancellationToken);
+
+		}
 	}
 }
