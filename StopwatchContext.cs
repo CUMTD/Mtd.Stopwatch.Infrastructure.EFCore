@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
+using Mtd.Stopwatch.Core.Entities.Api;
 using Mtd.Stopwatch.Core.Entities.Schedule;
 using Mtd.Stopwatch.Core.Entities.Transit;
+using Mtd.Stopwatch.Infrastructure.EFCore.Configuration.Api;
 using Mtd.Stopwatch.Infrastructure.EFCore.Configuration.Schedule;
 using Mtd.Stopwatch.Infrastructure.EFCore.Configuration.Transit;
 
@@ -24,6 +26,8 @@ namespace Mtd.Stopwatch.Infrastructure.EFCore
 		public DbSet<StopTime> StopTimes { get; protected set; }
 		public DbSet<Trip> Trips { get; protected set; }
 		public DbSet<Reroute> ReRoute { get; protected set; }
+		public DbSet<Developer> Developers { get; protected set; }
+		public DbSet<ApiKey> ApiKeys { get; protected set; }
 
 		protected override void OnModelCreating(ModelBuilder builder)
 		{
@@ -48,6 +52,8 @@ namespace Mtd.Stopwatch.Infrastructure.EFCore
 			_ = builder.ApplyConfiguration(new StopTimeConfiguration());
 			_ = builder.ApplyConfiguration(new TripConfiguration());
 			_ = builder.ApplyConfiguration(new RerouteConfiguration());
+			_ = builder.ApplyConfiguration(new DeveloperConfiguration());
+			_ = builder.ApplyConfiguration(new ApiKeyConfiguration());
 		}
 	}
 }
