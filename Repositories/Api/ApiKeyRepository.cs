@@ -3,19 +3,13 @@ using Mtd.Core.Entities;
 using Mtd.Infrastructure.EFCore.Repositories;
 using Mtd.Stopwatch.Core.Entities.Api;
 using Mtd.Stopwatch.Core.Repositories.Api;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Mtd.Stopwatch.Infrastructure.EFCore.Repositories.Api
 {
 	public class ApiKeyRepository(StopwatchContext context)
 		: AsyncEFRepository<ApiKey>(context), IApiKeyRepository<IReadOnlyCollection<ApiKey>>
 	{
-	{
-public Task<IReadOnlyCollection<ApiKey>> GetAllActiveWithDevelopers(CancellationToken cancellationToken) => throw new NotImplementedException();
+		public Task<IReadOnlyCollection<ApiKey>> GetAllActiveWithDevelopers(CancellationToken cancellationToken) => throw new NotImplementedException();
 		public async Task<ApiKey> GetApiKey(Guid apiKey, CancellationToken cancellationToken)
 		{
 			var data = await _dbSet
