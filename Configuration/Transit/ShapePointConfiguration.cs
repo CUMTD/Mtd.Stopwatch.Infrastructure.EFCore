@@ -40,6 +40,11 @@ namespace Mtd.Stopwatch.Infrastructure.EFCore.Configuration.Transit
 				.HasColumnName("DistnaceTraveled")
 				.HasPrecision(9, 3)
 				.IsRequired();
+
+			_ = builder
+				.HasOne(t => t.Shape)
+				.WithMany(s => s.Points)
+				.HasForeignKey(t => t.ShapeId);
 		}
 	}
 }
