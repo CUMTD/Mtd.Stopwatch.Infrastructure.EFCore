@@ -19,7 +19,7 @@ namespace Mtd.Stopwatch.Infrastructure.EFCore.Repositories.Schedule
 			return results.ToImmutableArray();
 		}
 
-		public async Task<IReadOnlyCollection<PublicRouteGroup>> GetAllWithPublicRoutesAsync(CancellationToken cancellationToken, bool includeDirections = false, bool includeDaytypes = false)
+		public async Task<IReadOnlyCollection<PublicRouteGroup>> GetAllWithPublicRoutesAsync(CancellationToken cancellationToken, bool includeDirections = false, bool includeDaytypes = false, bool includeTrips = false)
 		{
 			var query = Query();
 
@@ -34,13 +34,18 @@ namespace Mtd.Stopwatch.Infrastructure.EFCore.Repositories.Schedule
 					.ThenInclude(pr => pr.Daytype)
 				: query.Include(prg => prg.PublicRoutes);
 
+			if (includeTrips)
+			{
+				query = query.Include(prg => prg.PublicRoutes.Trips);
+			}
+ 
 			var results = await query
 				.ToArrayAsync(cancellationToken)
 				.ConfigureAwait(false);
 
 			return results.ToImmutableArray();
 		}
-		public Task<PublicRouteGroup> GetByIdentityWithPublicRoutesAsync(string identity, CancellationToken cancellationToken, bool includeDirections = false, bool includeDaytype = false)
+		public Task<PublicRouteGroup> GetByIdentityWithPublicRoutesAsync(string identity, CancellationToken cancellationToken, bool includeDirections = false, bool includeDaytype = false, bool includeTrips = false)
 		{
 			var query = Query()
 				.Where(prg => prg.Id == identity);
@@ -55,6 +60,11 @@ namespace Mtd.Stopwatch.Infrastructure.EFCore.Repositories.Schedule
 					.Include(prg => prg.PublicRoutes)
 					.ThenInclude(pr => pr.Daytype)
 				: query.Include(prg => prg.PublicRoutes);
+
+			if (includeTrips)
+			{
+				query = query.Include(prg => prg.PublicRoutes.Trips);
+			}
 
 			return query.SingleAsync(cancellationToken);
 
