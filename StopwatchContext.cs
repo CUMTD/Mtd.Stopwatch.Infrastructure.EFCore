@@ -28,6 +28,8 @@ namespace Mtd.Stopwatch.Infrastructure.EFCore
 		public DbSet<Reroute> ReRoute { get; protected set; }
 		public DbSet<Developer> Developers { get; protected set; }
 		public DbSet<ApiKey> ApiKeys { get; protected set; }
+		public DbSet<Fleet> Fleets { get; protected set; }
+		public DbSet<FleetVehicle> FleetVehicles { get; protected set; }
 
 		protected override void OnModelCreating(ModelBuilder builder)
 		{
@@ -54,6 +56,8 @@ namespace Mtd.Stopwatch.Infrastructure.EFCore
 			_ = builder.ApplyConfiguration(new RerouteConfiguration());
 			_ = builder.ApplyConfiguration(new DeveloperConfiguration());
 			_ = builder.ApplyConfiguration(new ApiKeyConfiguration());
+			_ = builder.ApplyConfiguration(new FleetConfiguration());
+			_ = builder.ApplyConfiguration(new FleetVehicleConfiguration());
 		}
 	}
 }
