@@ -20,6 +20,12 @@ namespace Mtd.Stopwatch.Infrastructure.EFCore.Configuration.Transit
 				.IsRequired();
 
 			_ = builder
+				.Property(fv => fv.VehicleNumber)
+				.HasColumnName("VehicleNumber")
+				.HasMaxLength(50)
+				.IsRequired();
+
+			_ = builder
 				.Property(fv => fv.VehicleConfigurationId)
 				.HasColumnName("VehicleConfigurationId")
 				.HasMaxLength(36)
