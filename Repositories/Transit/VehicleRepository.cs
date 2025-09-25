@@ -6,13 +6,14 @@ using System.Collections.Immutable;
 
 namespace Mtd.Stopwatch.Infrastructure.EFCore.Repositories.Transit
 {
-	public class FleetRepository(StopwatchContext context)
-		: AsyncEFIdentifiableRepository<string, Fleet>(context), IFleetRepository<IReadOnlyCollection<Fleet>>
+	public class VehicleRepository(StopwatchContext context)
+		: AsyncEFIdentifiableRepository<string, Vehicle>(context), IVehicleRepository<IReadOnlyCollection<Vehicle>>
 	{
-		public async Task<IReadOnlyCollection<Fleet>> GetAllActiveAsync(CancellationToken cancellationToken)
+		public async Task<IReadOnlyCollection<Vehicle>> GetAllActiveAsync(CancellationToken cancellationToken)
 		{
 			var results = await Query()
-				.Include(f => f.Vehicles)
+				.Include(fv => fv.Attributes)
+				.Include(fv => fv.VehicleConfiguration)
 				.ToArrayAsync(cancellationToken);
 
 			return results.ToImmutableArray();

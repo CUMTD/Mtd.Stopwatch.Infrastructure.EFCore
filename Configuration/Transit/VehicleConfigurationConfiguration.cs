@@ -1,14 +1,13 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Mtd.Stopwatch.Core.Entities.Transit;
 
 namespace Mtd.Stopwatch.Infrastructure.EFCore.Configuration.Transit
 {
-	internal class FleetConfiguration : IEntityTypeConfiguration<Fleet>
+	internal class VehicleConfigurationConfiguration : IEntityTypeConfiguration<Core.Entities.Transit.VehicleConfiguration>
 	{
-		public void Configure(EntityTypeBuilder<Fleet> builder)
+		public void Configure(EntityTypeBuilder<Core.Entities.Transit.VehicleConfiguration> builder)
 		{
-			_ = builder.ToTable("Fleet", "transit");
+			_ = builder.ToTable("VehicleConfiguration", "transit");
 
 			_ = builder.HasKey(f => f.Id);
 
@@ -41,11 +40,6 @@ namespace Mtd.Stopwatch.Infrastructure.EFCore.Configuration.Transit
 				.IsRequired();
 
 			_ = builder
-				.Property(f => f.DateInService)
-				.HasColumnName("DateInService")
-				.IsRequired();
-
-			_ = builder
 				.Property(f => f.LengthFeet)
 				.HasColumnName("LengthFeet")
 				.IsRequired(false);
@@ -56,18 +50,8 @@ namespace Mtd.Stopwatch.Infrastructure.EFCore.Configuration.Transit
 				.IsRequired();
 
 			_ = builder
-				.Property(f => f.IsActive)
-				.HasColumnName("IsActive")
-				.IsRequired();
-
-			_ = builder
 				.Property(f => f.IsPublic)
 				.HasColumnName("IsPublic")
-				.IsRequired();
-
-			_ = builder
-				.Property(f => f.ImportTime)
-				.HasColumnName("ImportTime")
 				.IsRequired();
 
 			_ = builder

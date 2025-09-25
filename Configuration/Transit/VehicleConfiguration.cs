@@ -4,14 +4,14 @@ using Mtd.Stopwatch.Core.Entities.Transit;
 
 namespace Mtd.Stopwatch.Infrastructure.EFCore.Configuration.Transit
 {
-	internal class FleetVehicleConfiguration : IEntityTypeConfiguration<FleetVehicle>
+	internal class VehicleConfiguration : IEntityTypeConfiguration<Vehicle>
 	{
-		public void Configure(EntityTypeBuilder<FleetVehicle> builder)
+		public void Configure(EntityTypeBuilder<Vehicle> builder)
 		{
-			_ = builder.ToTable("FleetVehicle", "transit");
+			_ = builder.ToTable("Vehicle", "transit");
 
 			// Compound Key
-			_ = builder.HasKey(fv => new { fv.Id, fv.FleetId });
+			_ = builder.HasKey(fv => new { fv.Id, fv.VehicleConfigurationId });
 
 			_ = builder
 				.Property(fv => fv.Id)
@@ -20,8 +20,8 @@ namespace Mtd.Stopwatch.Infrastructure.EFCore.Configuration.Transit
 				.IsRequired();
 
 			_ = builder
-				.Property(fv => fv.FleetId)
-				.HasColumnName("FleetId")
+				.Property(fv => fv.VehicleConfigurationId)
+				.HasColumnName("VehicleConfigurationId")
 				.HasMaxLength(36)
 				.IsRequired();
 
@@ -31,14 +31,18 @@ namespace Mtd.Stopwatch.Infrastructure.EFCore.Configuration.Transit
 				.IsRequired();
 
 			_ = builder
-				.Property(fv => fv.ImportTime)
-				.HasColumnName("ImportTime")
+				.Property(fv => fv.VIN)
+				.HasColumnName("VIN")
+				.IsRequired();
+			_ = builder
+				.Property(fv => fv.LicensePlateNumber)
+				.HasColumnName("LicensePlateNumber")
 				.IsRequired();
 
 			_ = builder
-				.HasOne<Fleet>()
+				.HasOne<VehicleConfiguration>()
 				.WithMany()
-				.HasForeignKey(fv => fv.FleetId)
+				.HasForeignKey(fv => fv.VehicleConfigurationId)
 				.IsRequired();
 
 			_ = builder
