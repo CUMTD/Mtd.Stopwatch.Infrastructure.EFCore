@@ -31,12 +31,6 @@ namespace Mtd.Stopwatch.Infrastructure.EFCore.Configuration.Transit
 				.HasMaxLength(500)
 				.IsRequired();
 
-			//_ = builder
-			//	.HasOne<Vehicle>()
-			//	.WithMany()
-			//	.HasForeignKey(fv => fv.VehicleId)
-			//	.IsRequired();
-
 		}
 	}
 }

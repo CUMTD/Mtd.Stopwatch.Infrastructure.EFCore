@@ -56,7 +56,8 @@ namespace Mtd.Stopwatch.Infrastructure.EFCore.Configuration.Transit
 
 			_ = builder
 				.HasMany(f => f.Vehicles)
-				.WithOne()
+				.WithOne(v => v.VehicleConfiguration)
+				.HasForeignKey(v => v.VehicleConfigurationId)
 				.IsRequired(false);
 
 		}
