@@ -58,6 +58,7 @@ namespace Mtd.Stopwatch.Infrastructure.EFCore
 			_ = builder.ApplyConfiguration(new ApiKeyConfiguration());
 			_ = builder.ApplyConfiguration(new VehicleConfigurationConfiguration());
 			_ = builder.ApplyConfiguration(new Configuration.Transit.VehicleConfiguration());
+			_ = builder.ApplyConfiguration(new VehicleAttributeConfiguration());
 		}
 	}
 }
