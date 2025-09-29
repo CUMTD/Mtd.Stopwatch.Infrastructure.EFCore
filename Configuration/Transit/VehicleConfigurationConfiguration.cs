@@ -54,12 +54,6 @@ namespace Mtd.Stopwatch.Infrastructure.EFCore.Configuration.Transit
 				.HasColumnName("IsPublic")
 				.IsRequired();
 
-			_ = builder
-				.HasMany(f => f.Vehicles)
-				.WithOne(v => v.VehicleConfiguration)
-				.HasForeignKey(v => v.VehicleConfigurationId)
-				.IsRequired(false);
-
 		}
 	}
 }
