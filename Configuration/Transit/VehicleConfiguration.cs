@@ -23,7 +23,7 @@ namespace Mtd.Stopwatch.Infrastructure.EFCore.Configuration.Transit
 				.Property(fv => fv.VehicleNumber)
 				.HasColumnName("VehicleNumber")
 				.HasMaxLength(50)
-				.IsRequired();
+				.IsRequired(false);
 
 			_ = builder
 				.Property(fv => fv.VehicleConfigurationId)
@@ -39,11 +39,17 @@ namespace Mtd.Stopwatch.Infrastructure.EFCore.Configuration.Transit
 			_ = builder
 				.Property(fv => fv.VIN)
 				.HasColumnName("VIN")
-				.IsRequired();
+				.IsRequired(false);
+
 			_ = builder
 				.Property(fv => fv.LicensePlateNumber)
 				.HasColumnName("LicensePlateNumber")
-				.IsRequired();
+				.IsRequired(false);
+
+			_ = builder
+				.Property(fv => fv.DateInService)
+				.HasColumnName("DateInService")
+				.IsRequired(false);
 
 			_ = builder
 				.HasOne(v => v.VehicleConfiguration)
